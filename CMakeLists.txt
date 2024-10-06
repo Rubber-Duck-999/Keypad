@@ -18,7 +18,7 @@ pico_sdk_init()
 include(libraries/pico_rgb_keypad/pico_rgb_keypad)
 
 add_executable(${NAME}
-    main.c
+    main.cpp
 )
 
 # Add pico_stdlib library which aggregates commonly used features
