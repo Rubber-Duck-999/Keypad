@@ -21,9 +21,11 @@ add_executable(${NAME}
     main.cpp
 )
 
+pico_enable_stdio_usb(${NAME} 1)
+pico_enable_stdio_uart(${NAME} 0)
+# create map/bin/hex/uf2 file in addition to ELF.
+pico_add_extra_outputs(${NAME})
+
 # Add pico_stdlib library which aggregates commonly used features
 # Pull in pico libraries that we need
 target_link_libraries(${NAME} pico_stdlib pico_rgb_keypad)
-
-# create map/bin/hex/uf2 file in addition to ELF.
-pico_add_extra_outputs(${NAME})

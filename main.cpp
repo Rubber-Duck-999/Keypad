@@ -2,16 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "pico/stdlib.h"
-
 #include "pico_rgb_keypad.hpp"
-
-/*
-  Test buttons/lights by lighting them up in a sequence of colors.
-
-  Press each button in turn, it will light up green.
-  Once all buttons are lit, they will turn off.
-  Press them again to light them in the next color.
-*/
 
 using namespace pimoroni;
 
@@ -31,8 +22,10 @@ color colors[num_colors] = {
   {0x00, 0x20, 0x20}  // Teal
 };
 
+
 int main() {
   pico_keypad.init();
+  stdio_init_all();
   pico_keypad.set_brightness(1.0f);
 
   uint16_t lit_buttons = 0;
@@ -43,6 +36,7 @@ int main() {
     // Read button states from i2c expander
     // for any pressed buttons set the corresponding bit in "lit_buttons"
     lit_buttons |= pico_keypad.get_button_states();
+    printf("Still waiting\n");
 
     // You could use a bitwise XOR (^) to make the buttons toggle their respective "lit" bits on and off:
     // lit_buttons ^= pico_keypad.get_button_states();
